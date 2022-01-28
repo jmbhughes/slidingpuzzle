@@ -6,9 +6,10 @@ Usage
 Installation
 ------------
 
-To use Lumache, first clone the repo and then install it using pip:
+To use slidingpuzzle, first clone the repo and then install it using pip:
 
-.. code-block:: console
+.. code-block:: bash
+
    (.venv) $ git clone https://github.com/jmbhughes/slidingpuzzle.git
    (.venv) $ pip install .
 
@@ -24,7 +25,7 @@ For example:
 
 Alternatively, you can generate a random puzzle.
 
-.. autofunction:: slidingpuzzle.NPuzzle.random_puzzle(3)
+.. autofunction:: slidingpuzzle.NPuzzle.random_puzzle
 
 To solve, you can use breadth-first search (BFS) or A*. The syntax is the same. For A*:
 

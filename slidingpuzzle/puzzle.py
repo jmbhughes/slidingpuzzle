@@ -10,6 +10,9 @@ Action = namedtuple("Action", "start_row start_col end_row end_col")
 
 
 class SlideDirection(Enum):
+    """
+    The potential slide directions for a normal N-Puzzle.
+    """
     DOWN = (-1, 0)
     LEFT = (0, 1)
     RIGHT = (0, -1)
@@ -17,6 +20,7 @@ class SlideDirection(Enum):
 
     def __str__(self):
         return f"{self.value}"
+
 
 def generate_random_puzzle_placements(n_rows: int, n_cols: int):
     assert n_rows > 0, "Must be at least one row"

@@ -4,4 +4,7 @@ API
 .. autosummary::
    :toctree: generated
 
-   slidingpuzzle
+.. automodule:: slidingpuzzle.puzzle
+    :members:
+
+test

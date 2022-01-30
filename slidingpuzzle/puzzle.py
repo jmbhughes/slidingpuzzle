@@ -19,10 +19,11 @@ class SlideDirection(Enum):
     UP = (1, 0)
 
     def __str__(self):
-        return f"{self.value}"
+        return f"{self.name}"
 
 
 def generate_random_puzzle_placements(n_rows: int, n_cols: int):
+    """ a docstring """
     assert n_rows > 0, "Must be at least one row"
     assert n_cols > 0, "Must be at least one column"
     placements = list(range(n_rows * n_cols))
@@ -31,6 +32,7 @@ def generate_random_puzzle_placements(n_rows: int, n_cols: int):
 
 
 class SlidingPuzzle:
+    """More comments"""
     def __init__(self, n_rows: int, n_cols: int, placements: List[int], solution: Optional[List[int]] = None):
         self.n_rows = n_rows
         self.n_cols = n_cols
@@ -98,7 +100,7 @@ class SlidingPuzzle:
         assert self.is_empty(action.end_row, action.end_col)
         assert self.is_full(action.start_row, action.start_col)
 
-        output = self.__deepcopy__()
+        output = copy.deepcopy(self)
         index = output._get_internal_coordinate(action.start_row, action.start_col)
         number = output.get(action.start_row, action.start_col)
         output.placements[index] = 0
@@ -127,7 +129,7 @@ class SlidingPuzzle:
                and self.placements == other.placements and self.solution == other.solution
 
     def __repr__(self) -> str:
-        return f"TileGrid({self.n_rows}, {self.n_cols}, {self.placements}, solution={self.solution})"
+        return f"SlidingPuzzle({self.n_rows}, {self.n_cols}, {self.placements}, solution={self.solution})"
 
     def __hash__(self) -> int:
         return hash(self.__repr__())
@@ -163,7 +165,7 @@ class NPuzzle(SlidingPuzzle):
         return inv_count
 
     # find Position of blank from bottom
-    def _find_x_row_from_bottom(self) -> int:
+    def _find_blank_row_from_bottom(self) -> int:
         # start from bottom-right corner of matrix
         for i in range(self.n_rows - 1, -1, -1):
             for j in range(self.n_rows - 1, -1, -1):
@@ -180,7 +182,7 @@ class NPuzzle(SlidingPuzzle):
         if self.n_rows % 2 == 1:
             return inv_count % 2 == 0
         else:  # grid is even
-            pos = self._find_x_row_from_bottom()
+            pos = self._find_blank_row_from_bottom()
             if pos % 2 == 0:
                 return inv_count % 2 == 1
             else:

@@ -3,6 +3,7 @@
 [![Documentation Status](https://readthedocs.org/projects/slidingpuzzle/badge/?version=latest)](http://slidingpuzzle.readthedocs.io/?badge=latest)
 [![GitHub license](https://img.shields.io/github/license/jmbhughes/slidingpuzzle)](https://github.com/jmbhughes/slidingpuzzle/blob/main/LICENSE.md)
 [![GitHub stars](https://img.shields.io/github/stars/jmbhughes/slidingpuzzle?style=social&label=Star&maxAge=2592000)](https://GitHub.com/jmbhughes/slidingpuzzle/stargazers/)
+[![codecov](https://codecov.io/gh/jmbhughes/slidingpuzzle/branch/main/graph/badge.svg?token=YZB2ZJ4DIN)](https://codecov.io/gh/jmbhughes/slidingpuzzle)
 
 `slidingpuzzle` is a library that explores the [slidinguzzle game](https://en.wikipedia.org/wiki/Sliding_puzzle). 
 It's currently under development and focused on solving the N-puzzle, sometimes also called the N<sup>2</sup>-1 puzzle. 

@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 import copy
 import math
 from collections import defaultdict
@@ -35,6 +34,7 @@ class PuzzleNode:
 
     def __repr__(self) -> str:
         return f"PuzzleNode({self.puzzle}, {self.children}, {self.actions_to_get_children}, {self.parent}, {self.actions_to_get_children}, {self.action_from_parent})"
+
     def __hash__(self) -> int:
         return hash(self.puzzle)
 
@@ -125,7 +125,6 @@ class AStarNPuzleSolver(NPuzzleSolver):
     def solve(self) -> List[SlideDirection] | bool:
         node_id = 0
         start = PuzzleNode(self.puzzle, [], [], None, None)
-        # unvisited = {start}
         nodes = {node_id: start}
         unvisited = PriorityQueue()
         unvisited.put((math.inf, node_id))
@@ -138,7 +137,6 @@ class AStarNPuzleSolver(NPuzzleSolver):
         f_score[start] = self.heuristic.h(start)
 
         while unvisited:
-            # current = min(unvisited, key=lambda node: f_score[node])
             current = nodes[unvisited.get()[1]]
             self.num_nodes_explored += 1
             if current.puzzle.is_solved():
@@ -157,46 +155,8 @@ class AStarNPuzleSolver(NPuzzleSolver):
                     if tentative_g_score < g_score[child]:
                         g_score[child] = tentative_g_score
                         f_score[child] = tentative_g_score + self.heuristic.h(child)
-                    #unvisited.add(child)
                     nodes[node_id] = child
                     unvisited.put((f_score[child], node_id))
 
-            # unvisited.remove(current)
             visited.add(current.puzzle)
         return False
-
-        # open = set()
-        # closed = set()
-        #
-        # root = PuzzleNode(self.puzzle, [], [], None, None)
-        # open.add(root)
-        #
-        # while open:
-        #     current = min(open, key=lambda node: self.heuristic.f(node))
-        #     self.num_nodes_explored += 1
-        #     if current.puzzle.is_solved():
-        #         self.solution_node = current
-        #         return self._backtrack_solution_node()
-        #
-        #     open.remove(current)
-        #     closed.add(current)
-        #
-        #     for direction in SlideDirection:
-        #         child_puzzle = current.puzzle.slide(direction)
-        #         child = PuzzleNode(child_puzzle, [], [], current, direction)
-        #         current.children.append(child)
-        #         current.actions_to_get_children.append(direction)
-        #
-        #         if child in closed:
-        #             continue
-        #         cost = current.depth + 1
-        #         if child in open and cost < child.depth:
-        #             open.remove(child)
-        #         if child in closed and cost < child.depth:
-        #             closed.remove(child)
-        #         if child not in open and child not in closed:
-        #             open.add(child)
-        #
-        # return False
-
-
